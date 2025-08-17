@@ -2,211 +2,170 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>For My Jaan ❤️</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      font-family: 'Arial', sans-serif;
-      overflow: hidden;
-      background: black;
-      color: white;
-      text-align: center;
-    }
-    .screen {
-      display: none;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-    .active { display: flex; }
-    .background {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-    .heart {
-      font-size: 5rem;
-      color: red;
-      animation: pulse 1.2s infinite;
-      cursor: pointer;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
-    button, input {
-      margin: 10px;
-      padding: 10px 20px;
-      font-size: 1.2rem;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-    .option { background: pink; }
-    .option.bad { background: grey; }
-    .hidden { display: none; }
-  </style>
+  <title>For My Love ❤️</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- Background Music -->
-  <audio id="bgMusic" autoplay loop>
-    <source src="ava_ja.mp3" type="audio/mpeg">
-  </audio>
+  <audio id="bg-music" src="ava_ja.mp3" autoplay loop></audio>
 
-  <!-- Screen 1: Start -->
-  <div id="startScreen" class="screen active">
-    <img src="ava.jpg" class="background">
-    <div>
-      <div class="heart">❤️</div>
-      <h2>Jaan ho na aap meri?</h2>
-      <button onclick="handleYes()">Yes</button>
-      <button onclick="handleNo()">No</button>
-      <div id="noMessages"></div>
+  <!-- Start Screen -->
+  <div id="start-screen" class="screen active" style="background-image:url('ava.jpg')">
+    <div class="content">
+      <h1 class="glow">💖 Jaan ho na aap meri? 💖</h1>
+      <input type="text" id="name-input" placeholder="Enter your full name">
+      <button onclick="checkName()">Submit</button>
+      <p id="hint" class="hint"></p>
     </div>
   </div>
 
-  <!-- Screen 2: Name Entry -->
-  <div id="nameScreen" class="screen">
-    <img src="ava.jpg" class="background">
-    <h2>Enter your full name to continue 💖</h2>
-    <input id="nameInput" placeholder="Enter your full name">
-    <button onclick="checkName()">Submit</button>
-    <p id="nameHint"></p>
+  <!-- Quiz Screen -->
+  <div id="quiz-screen" class="screen">
+    <h2>Why are you so amazing? 💕</h2>
+    <div id="options" class="options"></div>
+    <p id="quiz-msg"></p>
   </div>
 
-  <!-- Screen 3: Quiz -->
-  <div id="quizScreen" class="screen">
-    <img src="ava.jpg" class="background">
-    <h2>Why are you so amazing?</h2>
-    <div id="options"></div>
-    <p id="quizMsg"></p>
-  </div>
-
-  <!-- Screen 4: Teddy Game -->
-  <div id="teddyScreen" class="screen">
-    <img src="ava.jpg" class="background">
-    <h2>Numan should marry who in this world competition?</h2>
-    <div>
-      <img src="bva.jpg" class="option-img" onclick="finalChoice(true)" width="150">
-      <img src="duck.png" class="option-img" onclick="finalChoice(false)" width="150">
-      <img src="gulzar.png" class="option-img" onclick="finalChoice(false)" width="150">
-      <img src="gabbar.png" class="option-img" onclick="finalChoice(false)" width="150">
-      <img src="anjana.png" class="option-img" onclick="finalChoice(false)" width="150">
-      <img src="random.png" class="option-img" onclick="finalChoice(false)" width="150">
+  <!-- Teddy Game Screen -->
+  <div id="teddy-screen" class="screen">
+    <h2>Numan should marry who in this World Competition? 💍</h2>
+    <div class="choices">
+      <img src="bva.jpg" class="choice" data-correct="true">
+      <img src="duck.png" class="choice">
+      <img src="gulzar.png" class="choice">
+      <img src="gabbar.png" class="choice">
+      <img src="anjana.png" class="choice">
+      <img src="random.png" class="choice">
     </div>
-    <p id="teddyMsg"></p>
   </div>
 
-  <!-- Screen 5: Final -->
-  <div id="finalScreen" class="screen">
-    <img src="bva.jpg" class="background">
-    <h2 id="finalText"></h2>
+  <!-- Final Screen -->
+  <div id="final-screen" class="screen" style="background-image:url('bva.jpg')">
+    <div class="final-message">
+      <h1 id="typewriter"></h1>
+    </div>
   </div>
 
   <script>
-    // Globals
-    let noCount = 0;
-    let nameAttempts = 0;
-    let correctName = "shaheen hassan";
-    let goodChoices = ["Your smile 💕", "Your kindness ✨", "Your pets 🐟", "Your magic with food 🍲", "Your look", "Your hugs 🤗", "Your laugh 😍", "Your care ❤️", "Your style 😘"];
-    let badChoices = ["Being stubborn 😅", "Getting angry 😡", "Ignoring me 🙄", "Forgetting things 😜", "Being bossy 👑", "Sleeping too much 😴"];
-    let selectedGood = [];
+    // Background music safe autoplay
+    document.addEventListener('click', () => {
+      const music = document.getElementById('bg-music');
+      if (music.paused) music.play();
+    }, { once: true });
 
-    function show(screenId) {
-      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-      document.getElementById(screenId).classList.add('active');
-    }
-
-    // Start Screen
-    function handleYes() { show('nameScreen'); }
-    function handleNo() {
-      noCount++;
-      let msgs = ["What?", "Why?", "I thought you loved me ;("];
-      let div = document.getElementById("noMessages");
-      if (noCount <= msgs.length) {
-        div.innerText = msgs[noCount - 1];
-      } else {
-        let btn = document.createElement("button");
-        btn.innerText = "YES 💖";
-        btn.onclick = handleYes;
-        div.appendChild(btn);
-      }
-    }
-
-    // Name Screen
+    // ✅ Fixed Name Check
+    let attempts = 0;
     function checkName() {
-      let input = document.getElementById("nameInput").value.trim().toLowerCase();
-      if (input === correctName) {
-        show('quizScreen');
-        loadQuiz();
+      const input = document.getElementById("name-input").value.trim().toLowerCase();
+      const hint = document.getElementById("hint");
+
+      if (input === "shaheen hassan") {
+        goToScreen("quiz-screen");
       } else {
-        nameAttempts++;
-        document.getElementById("nameHint").innerText = (nameAttempts >= 2) ? 
-          "Maybe try Shaheen with my last name ;)" : "Try again!";
+        attempts++;
+        if (attempts >= 2) {
+          hint.innerText = "Maybe try Shaheen with my last name ;)";
+        } else {
+          hint.innerText = "Try again 💕";
+        }
       }
     }
 
-    // Quiz Screen
+    // Switch screens
+    function goToScreen(id) {
+      document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+
+      if (id === "quiz-screen") loadQuiz();
+    }
+
+    // Quiz Options
+    const positives = [
+      "Your smile 💕", "Your kindness ✨", "Your pets 🐟",
+      "Your magic with food 🍲", "Your look 😍",
+      "Your hugs 🤗", "Your eyes 👀", "Your jokes 😄", "Your care 💖"
+    ];
+    const negatives = [
+      "Being moody 😠", "Always late ⏰", "Eating my fries 🍟",
+      "Ignoring me 😒", "Sleeping too much 😴", "Your pranks 🙈"
+    ];
+    let selectedPositives = 0;
+
     function loadQuiz() {
-      let optionsDiv = document.getElementById("options");
-      optionsDiv.innerHTML = "";
-      let choices = [...goodChoices, ...badChoices].sort(() => Math.random() - 0.5);
-      choices.forEach(choice => {
-        let btn = document.createElement("button");
-        btn.innerText = choice;
-        btn.className = "option";
-        btn.onclick = () => handleChoice(choice, btn);
-        optionsDiv.appendChild(btn);
+      const allOptions = [...positives, ...negatives]
+        .sort(() => Math.random() - 0.5);
+      const container = document.getElementById("options");
+      container.innerHTML = "";
+      allOptions.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.innerText = opt;
+        btn.onclick = () => handleAnswer(opt, btn);
+        container.appendChild(btn);
       });
     }
 
-    function handleChoice(choice, btn) {
-      if (goodChoices.includes(choice)) {
-        if (!selectedGood.includes(choice)) selectedGood.push(choice);
-        btn.style.background = "lightgreen";
+    function handleAnswer(opt, btn) {
+      if (positives.includes(opt)) {
+        btn.classList.add("correct");
+        selectedPositives++;
+        if (selectedPositives >= 5) {
+          document.getElementById("quiz-msg").innerText = "Yesss! You are perfect 😍";
+          setTimeout(() => goToScreen("teddy-screen"), 1200);
+        }
       } else {
-        btn.style.display = "none";
-        document.getElementById("quizMsg").innerText = "Whoops 😅 Nope!";
-      }
-      if (selectedGood.length >= 5) {
-        show("teddyScreen");
+        btn.classList.add("wrong");
+        btn.disabled = true;
+        document.getElementById("quiz-msg").innerText = "Whoops! Try again 💕";
       }
     }
 
     // Teddy Game
-    function finalChoice(correct) {
-      if (correct) {
-        show("finalScreen");
-        typeWriter("Always yours & I Love You Forever 💖 – Numan");
-      } else {
-        document.getElementById("teddyMsg").innerText = "Nooo, wrong choice 😆";
-      }
-    }
-
-    // Final Screen
-    function typeWriter(text) {
-      let i = 0;
-      let speed = 100;
-      function typing() {
-        if (i < text.length) {
-          document.getElementById("finalText").innerHTML += text.charAt(i);
-          i++;
-          setTimeout(typing, speed);
+    document.addEventListener("click", e => {
+      if (e.target.classList.contains("choice")) {
+        if (e.target.dataset.correct) {
+          goToScreen("final-screen");
+          typeWriter();
+        } else {
+          e.target.classList.add("shake");
+          setTimeout(() => e.target.classList.remove("shake"), 500);
         }
       }
-      typing();
+    });
+
+    // Typewriter Effect
+    const finalMsg = "Always yours & I Love You Forever 💖 – Numan";
+    let i = 0;
+    function typeWriter() {
+      if (i < finalMsg.length) {
+        document.getElementById("typewriter").innerHTML += finalMsg.charAt(i);
+        i++;
+        setTimeout(typeWriter, 80);
+      }
     }
   </script>
+
+  <style>
+    body, html {
+      margin:0; padding:0; font-family:sans-serif;
+      background:#000; color:white; text-align:center;
+      height:100%; overflow:hidden;
+    }
+    .screen { display:none; height:100vh; width:100vw;
+      background-size:cover; background-position:center;
+      justify-content:center; align-items:center; flex-direction:column; }
+    .screen.active { display:flex; }
+    .content { background:rgba(0,0,0,0.6); padding:20px; border-radius:10px; }
+    .glow { text-shadow:0 0 10px pink,0 0 20px red; }
+    input { padding:10px; margin:10px; }
+    button { margin:5px; padding:10px 20px; font-size:16px; cursor:pointer; }
+    .options { display:flex; flex-wrap:wrap; justify-content:center; }
+    .options button { margin:5px; padding:10px; border:none; border-radius:5px; }
+    .correct { background:green; color:white; }
+    .wrong { background:red; color:white; }
+    .choices img { width:120px; margin:10px; cursor:pointer; transition:0.3s; }
+    .choices img.shake { transform:translateX(-10px); }
+    .final-message { background:rgba(0,0,0,0.5); padding:20px; }
+    .hint { margin-top:10px; color:yellow; }
+  </style>
 </body>
 </html>
