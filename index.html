@@ -89,36 +89,57 @@
         @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
 
         /* --- Final Screen --- */
-        .final-container { position: relative; width: 100%; height: 100%; }
-        #teddy {
-            position: absolute; bottom: 5vh; left: 50%;
-            width: clamp(200px, 40vw, 300px);
-            transform: translateX(-50%);
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            z-index: 10; /* Teddy is behind the rose */
-        }
-        #teddy:hover { transform: translateX(-50%) scale(1.05); }
-        #rose {
-            position: absolute; bottom: 15vh; left: 50%;
-            width: clamp(100px, 20vw, 150px);
-            transform: translate(-50%, 20px);
-            opacity: 0;
-            transition: opacity 0.5s, transform 0.5s;
-            pointer-events: none;
-            z-index: 11; /* Rose is in front of the teddy */
+        .final-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Center content vertically */
+            padding-bottom: 5vh; /* Add padding to prevent cut-off on smaller screens */
+            padding-top: 10vh; /* Add padding to prevent cut-off on smaller screens */
         }
         #finalMessage {
-            font-size: clamp(30px, 6vw, 50px);
+            font-size: clamp(16px, 4vw, 24px); /* Adjusted for better fit */
             font-weight: bold;
             opacity: 0;
-            transition: opacity 1s ease;
+            white-space: pre-wrap; /* Preserve line breaks */
+            max-width: 90%; /* Ensure it fits horizontally */
+            margin-top: 20px;
+            text-align: center;
+            line-height: 1.5;
+            overflow-y: auto; /* Enable vertical scrolling if text overflows */
+            max-height: 60vh; /* Set a maximum height to allow scrolling */
             /* Magical Gradient Text Effect */
             background: linear-gradient(45deg, #ff81c0, #e68aff, #84e1ff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-shadow: 0 0 15px rgba(255, 129, 192, 0.5), 0 0 30px rgba(230, 138, 255, 0.4);
+            transition: opacity 1s ease;
+        }
+        #teddy {
+            position: absolute;
+            bottom: 5vh;
+            left: 50%;
+            width: clamp(200px, 40vw, 300px);
+            transform: translateX(-50%);
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.5s ease; /* Added opacity transition */
+            z-index: 10;
+        }
+        #teddy:hover { transform: translateX(-50%) scale(1.05); }
+        #rose {
+            position: absolute;
+            bottom: 15vh;
+            left: 50%;
+            width: clamp(100px, 20vw, 150px);
+            transform: translate(-50%, 20px);
+            opacity: 0;
+            transition: opacity 0.5s, transform 0.5s;
+            pointer-events: none;
+            z-index: 11;
         }
     </style>
 </head>
@@ -169,7 +190,7 @@
     <section id="finalScreen" class="screen">
         <img src="bva.jpg" alt="Background" class="background">
         <div class="final-container">
-            <h1 id="finalMessage"></h1>
+            <p id="finalMessage"></p>
             <img id="teddy" src="teddy.png" alt="Teddy Bear">
             <img id="rose" src="rose.png" alt="Rose">
         </div>
@@ -343,9 +364,16 @@
     };
     
     teddy.addEventListener('click', () => {
+        // Step 1: Rose appears
         rose.style.opacity = '1';
         rose.style.transform = 'translate(-50%, 0)';
         
+        // Step 2: Teddy fades out after a short delay
+        setTimeout(() => {
+            teddy.style.opacity = '0';
+        }, 500); // 500ms delay to let the rose appear first
+
+        // Step 3: Typewriter effect starts after another delay
         setTimeout(() => {
             typeWriter(`میری جان، محبت میرے لیے صرف ایک لفظ تھی، ایک ایسی چیز جسے میں نے کہانیوں اور نغموں میں ہی سنا تھا۔ لیکن جب میں نے آپ کو دیکھا تو یہ لفظ حقیقت بن گیا۔ اُس لمحے مجھے محسوس ہوا کہ محبت صرف پائی نہیں جاتی بلکہ دیکھی اور جانی جاتی ہے—آپ کی مسکراہٹ میں، آپ کی آواز میں اور آپ کی آنکھوں میں۔
 
@@ -359,10 +387,9 @@
 
 ہاں، میں شاید دنیا کے حساب سے تیار نہ ہوں، لیکن آپ کے لیے ہمیشہ تیار ہوں۔
 
-ہمیشہ آپ کا،  
+ہمیشہ آپ کا،
 نومان`);
-
-        }, 300);
+        }, 1000); // 1000ms delay for a staggered effect
         
         teddy.style.pointerEvents = 'none';
     }, { once: true });
@@ -372,5 +399,3 @@
 </script>
 </body>
 </html>
-
-
