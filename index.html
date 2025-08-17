@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Forever Yours – For My Love ❤️</title>
+<title> For My Cutie❤️</title>
 <style>
   :root{
     --pink:#ff5fa8; --deep:#ff2f86; --bg:#050507; --soft:#ffe6f1; --ok:#2ecc71; --bad:#ff5b6a;
@@ -67,7 +67,7 @@
       <div class="heart" id="heart">❤️</div>
       <div class="subtitle">Jaan ho na aap meri?</div>
       <div class="field" style="margin-top:10px">
-        <input id="answer" type="text" placeholder="Type: Yes / Ha / Hnn ..." autocomplete="off">
+        <input id="answer" type="text" placeholder="Type:what you always say" autocomplete="off">
         <button class="primary" id="ansBtn">Submit</button>
       </div>
       <div id="tease" class="subtitle" style="min-height:22px;margin-top:8px;"></div>
@@ -108,7 +108,7 @@
   <img src="bva.jpg" class="bg" alt="">
   <div class="center">
     <div class="center-card" style="width:100%;max-width:960px">
-      <div class="title">“Numan should marry whom in this World Competition?”</div>
+      <div class="title">“Numan should marry whom in this World?”</div>
       <div class="grid6" id="grid6"></div>
     </div>
   </div>
@@ -218,7 +218,7 @@ nameBtn.addEventListener('click', ()=>{
   const val = normalizeName(fullname.value);
   nameAttempts++;
   // accepted canonical normalized value:
-  if (val === 'shaheen hassan') {
+  if (val === 'Shaheen Hassan') {
     nameModal.classList.add('hidden');
     goQuiz();
   } else {
@@ -236,11 +236,11 @@ const chipsWrap = byId('chips');
 const toPick = byId('toPick');
 
 const GOOD = [
-  'Your smile 💕','Your kindness ✨','Your magic with food 🍲','Your caring heart 💗',
-  'Your intelligence 🧠','Your look 😍','Your laughter 🎶','Your patience 🌹','The way you love me 💞'
+  'My smile 💕','My kindness ✨','My magic with food 🍲','My caring heart 💗',
+  'My intelligence 🧠','My look 😍','My laughter 🎶','My patience 🌹','The way you love me 💞'
 ];
 const BAD = [
-  'Your pets 🐟','Being lazy 🛋️','Mood swings 🌩️','Overthinking 🤯','Getting angry 😠','Forgetfulness 😅'
+  'My pets 🐟','Being lazy 🛋️','Mood swings 🌩️','Overthinking 🤯','Getting angry 😠','Forgetfulness 😅'
 ];
 
 function goQuiz(){
@@ -292,12 +292,12 @@ function showPick(){
   grid6.innerHTML = '';
   // tiles with actual image files (shuffle)
   const tiles = [
-    {src:'bva.jpg', label:'Her (Winner) 💖', good:true},
-    {src:'duck.png', label:'A Duck', good:false},
-    {src:'gulzar.png', label:'Gulzar', good:false},
-    {src:'gabbar.png', label:'Gabbar', good:false},
-    {src:'anjana.png', label:'Anjana Om Kashyap', good:false},
-    {src:'random.png', label:'A Random Cat', good:false}
+    {src:'bva.jpg', label:'My love', good:true},
+    {src:'duck.png', label:'', good:false},
+    {src:'gulzar.png', label:'', good:false},
+    {src:'gabbar.png', label:'', good:false},
+    {src:'anjana.png', label:'', good:false},
+    {src:'random.png', label:'', good:false}
   ].sort(()=>Math.random()-0.5);
 
   tiles.forEach(t=>{
@@ -338,7 +338,7 @@ function showFinal(){
   // small bursts
   floatBurst(['💖','🌸','✨'], 22, 2000);
   // typewriter
-  typeWriter(finalType, "Always yours & I Love You Forever 💖 – Numan", 60);
+  typeWriter(finalType, "Always yours & I Love You Forever 💖 – Aapka Numan", 60);
   // teddy reacts + offers rose after taps
   let taps=0;
   const teddyClick = ()=> {
