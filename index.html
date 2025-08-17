@@ -65,7 +65,7 @@
     <div class="heart" id="heart">❤️</div>
     <div class="subtitle">Jaan ho na aap meri?</div>
     <div class="field">
-      <input id="answer" type="text" placeholder="Type: Yes / Ha / Hnn ..." autocomplete="off">
+      <input id="answer" type="text" placeholder="Type: what you always say" autocomplete="off">
       <button class="primary" id="ansBtn">Submit</button>
     </div>
     <div id="tease" class="subtitle" style="min-height:22px;"></div>
@@ -199,7 +199,7 @@ let nameAttempts = 0;
 nameBtn.addEventListener('click', ()=>{
   const val = (fullname.value||'').trim().toLowerCase();
   nameAttempts++;
-  if (val === 'shaheen Hassan'){
+  if (val === 'Shaheen Hassan'){
     nameModal.classList.add('hidden');
     goQuiz();
   } else {
@@ -357,3 +357,4 @@ console.log('App ready. Tap the heart, say Yes, then enjoy 💖');
 </script>
 </body>
 </html>
+
