@@ -89,36 +89,59 @@
         @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
 
         /* --- Final Screen --- */
-        .final-container { position: relative; width: 100%; height: 100%; }
-        #teddy {
-            position: absolute; bottom: 5vh; left: 50%;
-            width: clamp(200px, 40vw, 300px);
-            transform: translateX(-50%);
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            z-index: 10; /* Teddy is behind the rose */
-        }
-        #teddy:hover { transform: translateX(-50%) scale(1.05); }
-        #rose {
-            position: absolute; bottom: 15vh; left: 50%;
-            width: clamp(100px, 20vw, 150px);
-            transform: translate(-50%, 20px);
-            opacity: 0;
-            transition: opacity 0.5s, transform 0.5s;
-            pointer-events: none;
-            z-index: 11; /* Rose is in front of the teddy */
+        .final-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Aligned to the top to make scrolling possible */
+            justify-content: flex-start; 
+            padding-bottom: 5vh;
+            padding-top: 5vh; 
         }
         #finalMessage {
-            font-size: clamp(30px, 6vw, 50px);
+            font-size: clamp(16px, 4vw, 24px);
             font-weight: bold;
             opacity: 0;
-            transition: opacity 1s ease;
-            /* Magical Gradient Text Effect */
+            white-space: pre-wrap;
+            max-width: 90%;
+            margin-top: 20px;
+            text-align: center;
+            line-height: 1.5;
+            /* Enabled vertical scrolling if text overflows */
+            overflow-y: auto; 
+            /* Set a maximum height to allow scrolling */
+            max-height: 50vh; 
             background: linear-gradient(45deg, #ff81c0, #e68aff, #84e1ff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-shadow: 0 0 15px rgba(255, 129, 192, 0.5), 0 0 30px rgba(230, 138, 255, 0.4);
+            transition: opacity 1s ease;
+        }
+        #teddy {
+            position: absolute;
+            bottom: 5vh;
+            left: 50%;
+            width: clamp(200px, 40vw, 300px);
+            transform: translateX(-50%);
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.5s ease;
+            z-index: 10;
+        }
+        #teddy:hover { transform: translateX(-50%) scale(1.05); }
+        #rose {
+            position: absolute;
+            bottom: 25vh; /* Moved the rose up to make room for text */
+            left: 50%;
+            width: clamp(80px, 15vw, 120px);
+            transform: translate(-50%, 20px);
+            opacity: 0;
+            transition: opacity 0.5s, transform 0.5s;
+            pointer-events: none;
+            z-index: 11;
         }
     </style>
 </head>
@@ -169,7 +192,7 @@
     <section id="finalScreen" class="screen">
         <img src="bva.jpg" alt="Background" class="background">
         <div class="final-container">
-            <h1 id="finalMessage"></h1>
+            <p id="finalMessage"></p>
             <img id="teddy" src="teddy.png" alt="Teddy Bear">
             <img id="rose" src="rose.png" alt="Rose">
         </div>
@@ -329,31 +352,46 @@
 
     // --- FLOW 5: FINAL SCREEN ---
     const typeWriter = (text) => {
-        let i = 0;
-        finalMessage.innerHTML = '';
-        finalMessage.style.opacity = '1';
-        const typing = setInterval(() => {
-            if (i < text.length) {
-                finalMessage.innerHTML += text.charAt(i);
-                i++;
-            } else {
-                clearInterval(typing);
-            }
-        }, 80);
+        return new Promise(resolve => {
+            let i = 0;
+            finalMessage.innerHTML = '';
+            finalMessage.style.opacity = '1';
+            const typing = setInterval(() => {
+                if (i < text.length) {
+                    finalMessage.innerHTML += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typing);
+                    resolve();
+                }
+            }, 80);
+        });
     };
     
-    teddy.addEventListener('click', () => {
+    teddy.addEventListener('click', async () => {
+        // Step 1: Hide the teddy bear and start typing animation
+        teddy.style.opacity = '0';
+        teddy.style.pointerEvents = 'none';
+
+        // Step 2: Start the typewriter animation
+        await typeWriter(`میری جان، محبت میرے لیے صرف ایک لفظ تھی، ایک ایسی چیز جسے میں نے کہانیوں اور نغموں میں ہی سنا تھا۔ لیکن جب میں نے آپ کو دیکھا تو یہ لفظ حقیقت بن گیا۔ اُس لمحے مجھے محسوس ہوا کہ محبت صرف پائی نہیں جاتی بلکہ دیکھی اور جانی جاتی ہے—آپ کی مسکراہٹ میں، آپ کی آواز میں اور آپ کی آنکھوں میں۔
+
+جب میں پچھلے دنوں کو یاد کرتا ہوں تو یوں لگتا ہے جیسے قسمت ہمیشہ ہمیں قریب لانے میں مصروف تھی۔ وہ پہلا لمحہ جب ہم ملے، وہ پہلی ہنسی، وہ پہلا لمس، اور پھر وہ دن جب آپ نے "ہاں" کہہ کر میری زندگی کو مکمل کر دیا—یہ سب کچھ خواب کی طرح محسوس ہوتا ہے، ایک ایسا خواب جسے میں کبھی ختم نہیں کرنا چاہتا۔
+
+سچ کہوں تو میرے دل میں ڈر بھی ہے۔ ڈر اس لیے کہ میں نے کبھی یہ سب سوچا نہیں تھا، نہ کبھی شادی پر یقین کیا اور نہ ہی کبھی چاہا کہ میں رک جاؤں۔ لیکن آپ کے ساتھ یہ سب کچھ بالکل درست اور خوبصورت لگتا ہے۔ آپ کے ساتھ میں رکنا نہیں چاہتا، بلکہ آگے بڑھنا چاہتا ہوں۔ میں آپ کے ساتھ ایک ایسا سفر چاہتا ہوں جس میں خواب بھی ہوں اور ہنسی بھی، مشکلیں بھی ہوں اور بے پناہ محبت بھی۔
+
+مجھے معلوم ہے کہ ہر دن آسان نہیں ہوگا۔ کچھ دن مشکل ہوں گے، کچھ لمحے الجھاؤ والے ہوں گے۔ لیکن میرا یقین ہے کہ آپ کے ساتھ ہر مشکل آسان ہو جائے گی۔ میں صرف اچھے دن نہیں چاہتا، میں ہر دن چاہتا ہوں—بس آپ کے ساتھ۔
+
+آپ میری محبت ہی نہیں بلکہ میری بہترین دوست، میرا سہارا اور میری سب سے بڑی دعا ہیں۔ میں چاہتا ہوں کہ آپ میرا اصل چہرہ جانیں، میری کمزوریاں، میرے خواب اور میری کہانیاں۔ اور میں بھی آپ کے ہر رنگ کو جاننا چاہتا ہوں۔ کیونکہ ساتھ مل کر ہم ایک ایسی کہانی لکھ سکتے ہیں جو ہمیشہ کے لیے یادگار ہو۔
+
+ہاں، میں شاید دنیا کے حساب سے تیار نہ ہوں، لیکن آپ کے لیے ہمیشہ تیار ہوں۔
+
+ہمیشہ آپ کا،
+نومان`);
+
+        // Step 3: Show the rose after the text is fully typed
         rose.style.opacity = '1';
         rose.style.transform = 'translate(-50%, 0)';
-        
-        setTimeout(() => {
-            typeWriter("میری جان💖، آپ کو دیکھنے سے پہلے محبت میرے لیے صرف ایک لفظ تھی، لیکن آپ نے اسے حقیقت بنا دیا۔ آپ کی مسکراہٹ، آپ کی آنکھیں اور آپ کی موجودگی نے میری دنیا بدل دی۔ آپ کے ساتھ ہر لمحہ خواب سا لگتا ہے، وہ لمحہ جب آپ نے 'ہاں' کہا میری زندگی کا سب سے حسین دن تھا۔ ہاں، میں ڈرتا ہوں، مگر آپ کے ساتھ ہر خوف آسان ہو جاتا ہے۔ میں صرف اچھے دن نہیں چاہتا، میں ہر دن چاہتا ہوں—بس آپ کے ساتھ۔ آپ میری محبت، میری دوست، میرا سہارا اور میری سب سے بڑی دعا ہیں۔ ہمیشہ آپ کا، نعمان ");
-
-
-
-        }, 300);
-        
-        teddy.style.pointerEvents = 'none';
     }, { once: true });
 
     // --- INITIALIZE ---
@@ -361,4 +399,3 @@
 </script>
 </body>
 </html>
-
