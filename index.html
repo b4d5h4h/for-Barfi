@@ -74,10 +74,14 @@
         .option.fading { opacity: 0; transform: scale(0.8); }
 
         /* --- Choice Screen --- */
+        #choiceScreen.visible {
+            background: radial-gradient(circle, rgba(255,105,180,0.3) 0%, rgba(0,0,0,0) 70%), #050507;
+        }
         .choice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; max-width: 900px; margin-top: 20px; }
         .tile {
             border-radius: 15px; overflow: hidden; border: 2px solid transparent;
             cursor: pointer; position: relative; transition: transform 0.2s;
+            background: rgba(255,255,255,0.05);
         }
         .tile:hover { transform: scale(1.03); }
         .tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -88,12 +92,11 @@
         .final-container { position: relative; width: 100%; height: 100%; }
         #teddy {
             position: absolute; bottom: 5vh; left: 50%;
-            /* Make teddy bigger */
             width: clamp(200px, 40vw, 300px);
             transform: translateX(-50%);
             cursor: pointer;
             transition: transform 0.3s ease;
-            z-index: 12;
+            z-index: 10; /* Teddy is behind the rose */
         }
         #teddy:hover { transform: translateX(-50%) scale(1.05); }
         #rose {
@@ -102,12 +105,20 @@
             transform: translate(-50%, 20px);
             opacity: 0;
             transition: opacity 0.5s, transform 0.5s;
-            z-index: 11;
             pointer-events: none;
+            z-index: 11; /* Rose is in front of the teddy */
         }
         #finalMessage {
-            font-size: clamp(30px, 6vw, 50px); color: var(--pink); text-shadow: var(--glow);
-            opacity: 0; transition: opacity 1s ease;
+            font-size: clamp(30px, 6vw, 50px);
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 1s ease;
+            /* Magical Gradient Text Effect */
+            background: linear-gradient(45deg, #ff81c0, #e68aff, #84e1ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(255, 129, 192, 0.5), 0 0 30px rgba(230, 138, 255, 0.4);
         }
     </style>
 </head>
@@ -115,14 +126,13 @@
 
     <audio id="bgMusic" src="ava_ja.mp3" loop></audio>
 
-    <!-- ========= SCREEN 1: START ========= -->
     <section id="startScreen" class="screen">
         <img src="ava.jpg" alt="Background" class="background">
         <div class="center-card">
             <h1 class="title">Jaan ho na aap meri?</h1>
             <div id="heart" class="heart">❤️</div>
             <div class="input-field">
-                <input type="text" id="startInput" placeholder=" soch k likhna">
+                <input type="text" id="startInput" placeholder="socho socho..">
                 <button id="startBtn" class="btn">Submit</button>
             </div>
             <p id="playfulMessage" class="subtitle" style="min-height: 24px; margin-top: 15px;"></p>
@@ -130,7 +140,6 @@
         <button id="giantYesBtn">YES!</button>
     </section>
     
-    <!-- ========= SCREEN 2: NAME TRICK ========= -->
     <section id="nameScreen" class="screen">
         <img src="ava.jpg" alt="Background" class="background">
         <div class="center-card">
@@ -145,22 +154,18 @@
         </div>
     </section>
 
-    <!-- ========= SCREEN 3: QUIZ ========= -->
     <section id="quizScreen" class="screen">
         <div class="background pink-overlay"></div>
         <img src="ava.jpg" alt="Background" class="background">
-        <h2 class="title">Why are you marrying me?</h2>
+        <h2 class="title">What you like most in me?</h2>
         <div id="optionsContainer" class="options-grid"></div>
     </section>
 
-    <!-- ========= SCREEN 4: CHOICE (COMPETITION) ========= -->
     <section id="choiceScreen" class="screen">
-        <img src="bva.jpg" alt="Background" class="background">
         <h2 class="title">Numan should marry whom in this world competition?</h2>
         <div id="choiceGrid" class="choice-grid"></div>
     </section>
 
-    <!-- ========= SCREEN 5: FINAL (TEDDY) ========= -->
     <section id="finalScreen" class="screen">
         <img src="bva.jpg" alt="Background" class="background">
         <div class="final-container">
@@ -219,7 +224,7 @@
     const handleYes = () => {
         playfulMessage.textContent = "";
         giantYesBtn.classList.remove('visible');
-        showScreen(nameScreen); // <-- Go to Name Screen next
+        showScreen(nameScreen);
     };
     const handleNo = () => {
         resistCount++;
@@ -238,9 +243,9 @@
     // --- FLOW 2: NAME TRICK ---
     nameBtn.addEventListener('click', () => {
         const fullName = nameInput.value.trim().toLowerCase();
-        nameError.textContent = ''; // Clear previous error
+        nameError.textContent = '';
         
-        if (fullName === 'shaheen hassan') {
+        if (fullName === 'shaheen numan') {
             showScreen(quizScreen);
             buildQuiz();
         } else {
@@ -338,23 +343,18 @@
     };
     
     teddy.addEventListener('click', () => {
-        // Show the rose
         rose.style.opacity = '1';
         rose.style.transform = 'translate(-50%, 0)';
         
-        // Start the typewriter text
         setTimeout(() => {
             typeWriter("Always yours & I Love You Forever 💖 – Numan");
         }, 300);
         
-        // Make teddy unclickable after one use
         teddy.style.pointerEvents = 'none';
-    }, { once: true }); // The event listener will only run once
+    }, { once: true });
 
     // --- INITIALIZE ---
     showScreen(startScreen);
 </script>
 </body>
 </html>
-
-
