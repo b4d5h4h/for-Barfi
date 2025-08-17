@@ -88,32 +88,35 @@
         .tile.shake { animation: shake 0.4s; }
         @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
 
-        /* --- Final Screen --- */
+        /* --- Final Screen (FIXED) --- */
         .final-container {
-            position: relative;
+            position: relative; /* Establishes a positioning context for absolute children */
             width: 100%;
             height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            /* Aligned to the top to make scrolling possible */
-            justify-content: flex-start; 
-            padding-bottom: 5vh;
-            padding-top: 5vh; 
         }
         #finalMessage {
+            /* Position the text block absolutely at the top */
+            position: absolute;
+            top: 5vh;
+            left: 50%;
+            transform: translateX(-50%);
+            
+            width: 90%;
+            max-width: 800px; /* Cap width on large screens */
+            max-height: 60vh; /* Set a max height to allow scrolling and space for the rose */
+            
+            padding: 0 10px; /* Add space for the scrollbar and breathing room */
+
             font-size: clamp(16px, 4vw, 24px);
             font-weight: bold;
             opacity: 0;
-            white-space: pre-wrap;
-            max-width: 90%;
-            margin-top: 20px;
+            white-space: pre-wrap; /* Respects line breaks in your JS string */
             text-align: center;
             line-height: 1.5;
-            /* Enabled vertical scrolling if text overflows */
-            overflow-y: auto; 
-            /* Set a maximum height to allow scrolling */
-            max-height: 50vh; 
+            
+            /* Make the content scrollable when it overflows */
+            overflow-y: auto;
+            
             background: linear-gradient(45deg, #ff81c0, #e68aff, #84e1ff);
             -webkit-background-clip: text;
             background-clip: text;
@@ -134,7 +137,7 @@
         #teddy:hover { transform: translateX(-50%) scale(1.05); }
         #rose {
             position: absolute;
-            bottom: 25vh; /* Moved the rose up to make room for text */
+            bottom: 25vh;
             left: 50%;
             width: clamp(80px, 15vw, 120px);
             transform: translate(-50%, 20px);
