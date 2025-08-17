@@ -122,7 +122,7 @@
             <h1 class="title">Jaan ho na aap meri?</h1>
             <div id="heart" class="heart">❤️</div>
             <div class="input-field">
-                <input type="text" id="startInput" placeholder="Haan bolo na...">
+                <input type="text" id="startInput" placeholder=" soch k likhna">
                 <button id="startBtn" class="btn">Submit</button>
             </div>
             <p id="playfulMessage" class="subtitle" style="min-height: 24px; margin-top: 15px;"></p>
@@ -295,12 +295,12 @@
     const buildChoice = () => {
         choiceGrid.innerHTML = '';
         const choices = [
-            { src: 'bva.png', isCorrect: true },
+            { src: 'bva.jpg', isCorrect: true },
             { src: 'duck.png', isCorrect: false },
             { src: 'gulzar.png', isCorrect: false },
             { src: 'gabbar.png', isCorrect: false },
             { src: 'anjana.png', isCorrect: false },
-            { src: 'cat.png', isCorrect: false }
+            { src: 'random.png', isCorrect: false }
         ].sort(() => Math.random() - 0.5);
 
         choices.forEach(choice => {
@@ -356,4 +356,5 @@
 </script>
 </body>
 </html>
+
 
