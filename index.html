@@ -1,4 +1,5 @@
-above code have lots of bugs i dont want it like this way in our first all things were working fine like music back ground image interface everything i have told your just to fix the security answer correction in below code : <!doctype html>
+
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -188,27 +189,43 @@ bigYes.addEventListener('click', ()=>{
 });
 document.addEventListener('pointerdown', function onFirst(){ playMusic(); document.removeEventListener('pointerdown', onFirst); });
 
-/* ===== Full Name Trick ===== */
-const nameModal = byId('nameModal');
-const fullname = byId('fullname');
-const nameBtn = byId('nameBtn');
-const nameHint = byId('nameHint');
-const nameError = byId('nameError');
+<script>
+
+/* ===== Full Name Trick (FIXED) ===== */
+const nameModal = document.getElementById('nameModal');
+const fullname  = document.getElementById('fullname');
+const nameBtn   = document.getElementById('nameBtn');
+const nameHint  = document.getElementById('nameHint');
+const nameError = document.getElementById('nameError');
 let nameAttempts = 0;
 
+function normalizeName(s){
+  return (s || '')
+    .trim()
+    .replace(/\s+/g,' ')   // collapse multiple spaces
+    .toLowerCase();
+}
+
 nameBtn.addEventListener('click', ()=>{
-  const val = (fullname.value||'').trim().toLowerCase();
+  const val = normalizeName(fullname.value);
   nameAttempts++;
-  if (val === 'shaheen Hassan'){
+
+  if (val === 'Shaheen Hassan') {
     nameModal.classList.add('hidden');
     goQuiz();
   } else {
     if (nameAttempts >= 2){
-      nameHint.textContent = "Maybe try Shaheen with my last name ;)";
+      nameHint.textContent = 'Maybe try Shaheen with my last name ;)';
     }
     nameError.textContent = "Hmm… that doesn't look right.";
   }
 });
+
+/* (optional) allow Enter key in the input */
+fullname.addEventListener('keydown', (e)=>{
+  if (e.key === 'Enter') nameBtn.click();
+});
+</script>
 
 /* ===== Quiz Screen ===== */
 const quiz = byId('quiz');
