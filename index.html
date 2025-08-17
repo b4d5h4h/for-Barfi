@@ -218,7 +218,7 @@ nameBtn.addEventListener('click', ()=>{
   const val = normalizeName(fullname.value);
   nameAttempts++;
   // accepted canonical normalized value:
-  if (val === 'Shaheen Hassan') {
+  if (val === 'shaheen hassan') {
     nameModal.classList.add('hidden');
     goQuiz();
   } else {
@@ -374,3 +374,4 @@ fullname.addEventListener('keydown', (e)=>{ if (e.key === 'Enter') nameBtn.click
 </script>
 </body>
 </html>
+
