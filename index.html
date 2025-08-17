@@ -3,51 +3,47 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>For My Cutie ❤️</title>
+  <title> For My Cutie❤️</title>
   <style>
-    :root {
-      --pink: #ff5fa8; --deep: #ff2f86; --bg: #050507; --soft: #ffe6f1; --ok: #2ecc71; --bad: #ff5b6a;
+    :root{
+      --pink:#ff5fa8; --deep:#ff2f86; --bg:#050507; --soft:#ffe6f1; --ok:#2ecc71; --bad:#ff5b6a;
     }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background: var(--bg); color: #fff; overflow: hidden; }
-    .screen { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; }
-    .hidden { display: none !important; }
-    .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; filter: brightness(.65); }
-    .center { display: flex; flex-direction: column; align-items: center; gap: 14px; z-index: 2; text-align: center; padding: 16px; }
-    .heart { font-size: 92px; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; animation: beat 1200ms ease-in-out infinite; text-shadow: 0 10px 34px rgba(255, 20, 147, .25); }
-    @keyframes beat { 0% { transform: scale(1) } 40% { transform: scale(1.18) } 100% { transform: scale(1) } }
-    .subtitle { color: #ffdbe9; text-shadow: 0 2px 6px rgba(0, 0, 0, .6); }
-    .field { display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap; }
-    input[type=text] { padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, .25); background: rgba(0, 0, 0, .35); color: #fff; min-width: 240px; font-size: 16px; }
-    button { padding: 11px 18px; border-radius: 12px; border: none; cursor: pointer; font-weight: 700; }
-    .primary { background: var(--pink); color: #200; }
-    .ghost { background: transparent; border: 1px solid rgba(255, 255, 255, .35); color: #eee; }
-    .big-yes { position: fixed; inset: auto 0 10vh 0; margin: auto; width: 86vw; max-width: 560px; height: 74px; border-radius: 18px; background: linear-gradient(180deg, var(--pink), var(--deep)); color: #200; font-size: 28px; font-weight: 900; box-shadow: 0 12px 40px rgba(255, 20, 147, .45); z-index: 5; animation: bob 1.2s infinite ease-in-out; }
-    @keyframes bob { 0% { transform: translateY(0) } 50% { transform: translateY(-6px) } 100% { transform: translateY(0) } }
-    .whisper { position: fixed; top: 8%; left: 50%; transform: translateX(-50%); font-size: 18px; color: #ffd1e6; text-shadow: 0 0 10px rgba(255, 50, 120, .6); opacity: .95; }
-    .modal { position: fixed; inset: 0; background: rgba(0, 0, 0, .55); display: flex; align-items: center; justify-content: center; z-index: 10; }
-    .card { background: #fff; color: #111; width: 92vw; max-width: 440px; border-radius: 16px; padding: 18px 16px; box-shadow: 0 18px 50px rgba(0, 0, 0, .45); text-align: center; }
-    .card h3 { margin: 6px 0 4px; }
-    .card p { margin: 10px 0 0; }
-    .error { color: #c62828; min-height: 18px; font-size: 14px; margin-top: 6px; }
-    #quiz .title { font-size: 26px; margin-bottom: 8px; text-shadow: 0 2px 10px rgba(0, 0, 0, .5); }
-    .options { display: flex; flex-wrap: wrap; justify-content: center; max-width: 720px; gap: 10px; z-index: 2; }
-    .option { padding: 10px 12px; border-radius: 10px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); cursor: pointer; transition: transform .15s; }
-    .option:hover { transform: scale(1.04); }
-    .grid6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 94vw; max-width: 840px; z-index: 2; }
-    .tile { background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .22); border-radius: 12px; overflow: hidden; position: relative; cursor: pointer; }
-    .tile img { width: 100%; height: 28vh; object-fit: cover; display: block; }
-    .tile .label { position: absolute; left: 8px; bottom: 8px; background: rgba(0, 0, 0, .6); padding: 6px 10px; border-radius: 10px; font-weight: 700; color: #fff; }
-    .shake { animation: shake .35s; }
-    @keyframes shake { 0%, 100% { transform: translateX(0) } 20% { transform: translateX(-8px) } 40% { transform: translateX(8px) } 60% { transform: translateX(-6px) } 80% { transform: translateX(6px) } }
-    #final-type { font-size: 34px; color: var(--pink); text-shadow: 0 0 16px rgba(255, 20, 147, .5); text-align: center; z-index: 2; }
-    #teddy { position: fixed; left: 50%; bottom: 8vh; transform: translateX(-50%); width: 160px; max-width: 28vw; transition: transform .25s ease; cursor: pointer; z-index: 3; }
-    #rose { position: absolute; bottom: 8vh; left: 50%; transform: translateX(-50%); width: 110px; display: none; z-index: 3; }
-    .float-emoji { position: fixed; pointer-events: none; z-index: 99; }
-    .center-card { background: rgba(0, 0, 0, 0.45); padding: 18px; border-radius: 12px; z-index: 2; }
-    .float-heart { position: fixed; bottom: -30px; font-size: 20px; pointer-events: none; z-index: 60; opacity: 0.95; animation: riseUp linear forwards; }
-    @keyframes riseUp { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-140vh); opacity: 0; } }
-    @media(min-width: 900px) { .heart { font-size: 112px; } #final-type { font-size: 46px; } }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:#fff;overflow:hidden}
+    .screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column}
+    .hidden{display:none!important}
+    .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:brightness(.65)}
+    .center{display:flex;flex-direction:column;align-items:center;gap:14px;z-index:2;text-align:center;padding:16px}
+    .heart{font-size:92px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;animation:beat 1200ms ease-in-out infinite; text-shadow:0 10px 34px rgba(255,20,147,.25)}
+    @keyframes beat{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
+    .subtitle{color:#ffdbe9;text-shadow:0 2px 6px rgba(0,0,0,.6)}
+    .field{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}
+    input[type=text]{padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.35);color:#fff;min-width:240px;font-size:16px}
+    button{padding:11px 18px;border-radius:12px;border:none;cursor:pointer;font-weight:700}
+    .primary{background:var(--pink);color:#200}
+    .ghost{background:transparent;border:1px solid rgba(255,255,255,.35);color:#eee}
+    .big-yes{position:fixed;inset:auto 0 10vh 0;margin:auto;width:86vw;max-width:560px;height:74px;border-radius:18px;background:linear-gradient(180deg,var(--pink),var(--deep));color:#200;font-size:28px;font-weight:900;box-shadow:0 12px 40px rgba(255,20,147,.45);z-index:5;animation:bob 1.2s infinite ease-in-out}
+    @keyframes bob{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+    .whisper{position:fixed;top:8%;left:50%;transform:translateX(-50%);font-size:18px;color:#ffd1e6;text-shadow:0 0 10px rgba(255,50,120,.6);opacity:.95}
+    .error{color:#c62828;min-height:18px;font-size:14px;margin-top:6px}
+    #quiz .title{font-size:26px;margin-bottom:8px;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+    .options { display:flex; flex-wrap:wrap; justify-content:center; max-width:720px; gap:10px; z-index:2; }
+    .option{padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);cursor:pointer;transition:transform .15s}
+    .option:hover{transform:scale(1.04)}
+    .grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:94vw;max-width:840px;z-index:2}
+    .tile{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:12px;overflow:hidden;position:relative;cursor:pointer}
+    .tile img{width:100%;height:28vh;object-fit:cover;display:block}
+    .tile .label{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.6);padding:6px 10px;border-radius:10px;font-weight:700;color:#fff}
+    .shake{animation:shake .35s}
+    @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+    #final-type{font-size:34px;color:var(--pink);text-shadow:0 0 16px rgba(255,20,147,.5);text-align:center;z-index:2}
+    #teddy{position:absolute;left:50%;bottom:8vh;transform:translateX(-50%);width:160px;max-width:28vw;transition:transform .25s ease;cursor:pointer;z-index:3}
+    #rose{position:absolute;bottom:8vh;left:50%;transform:translateX(-50%);width:110px;display:none;z-index:3}
+    .float-emoji{position:fixed;pointer-events:none;z-index:99}
+    .center-card { background: rgba(0,0,0,0.45); padding:18px; border-radius:12px; z-index:2; }
+    .float-heart{ position:fixed; bottom:-30px; font-size:20px; pointer-events:none; z-index:60; opacity:0.95; animation: riseUp linear forwards; }
+    @keyframes riseUp { 0% { transform: translateY(0); opacity:1; } 100% { transform: translateY(-140vh); opacity:0; } }
+    @media(min-width:900px){.heart{font-size:112px} #final-type{font-size:46px}}
   </style>
 </head>
 <body>
@@ -79,7 +75,7 @@
         <input id="fullname" type="text" placeholder="Your full name"/>
         <button id="nameBtn" class="primary">Continue</button>
       </div>
-      <p id="nameHint" class="subtitle" style="margin-top:8px;"></p>
+      <p id="nameHint" class="subtitle"></p>
       <p id="nameError" class="error"></p>
     </div>
   </div>
@@ -92,6 +88,17 @@
       <div class="title">Why are you marrying me?</div>
       <div class="options" id="quizOptions"></div>
       <div class="subtitle" style="margin-top:12px">Pick at least 5 positives to continue.</div>
+    </div>
+  </div>
+</section>
+
+<section id="teddyScreen" class="screen hidden">
+  <img src="ava.jpg" class="bg" alt="">
+  <div class="center">
+    <div class="center-card">
+      <h2>Play with Numan's Teddy</h2>
+      <div id="teddyHint" class="whisper" style="display:none; margin-bottom:8px;">Touch me 🧸</div>
+      <img id="teddy" src="teddy.png" alt="teddy">
     </div>
   </div>
 </section>
@@ -110,9 +117,8 @@
   <img src="bva.jpg" class="bg" alt="">
   <div class="center">
     <div id="final-type"></div>
-    <img id="teddy" src="teddy.png" alt="teddy">
-    <img id="rose" src="rose.png" alt="rose">
   </div>
+  <img id="rose" src="rose.png" alt="rose" style="display:none">
 </section>
 
 <script>
@@ -121,14 +127,13 @@ const screens = {
   start: document.getElementById('startScreen'),
   name: document.getElementById('nameScreen'),
   quiz: document.getElementById('quizScreen'),
+  teddy: document.getElementById('teddyScreen'),
   choice: document.getElementById('choiceScreen'),
   final: document.getElementById('finalScreen')
 };
 const bgMusic = document.getElementById('bgMusic');
 const ansBtn = document.getElementById('ansBtn');
 const answer = document.getElementById('answer');
-const bigHeart = document.getElementById('bigHeart');
-const tease = document.getElementById('tease');
 const bigYes = document.getElementById('bigYes');
 const fullname = document.getElementById('fullname');
 const nameBtn = document.getElementById('nameBtn');
@@ -138,103 +143,95 @@ const quizOptions = document.getElementById('quizOptions');
 const grid6 = document.getElementById('grid6');
 const finalType = document.getElementById('final-type');
 const teddy = document.getElementById('teddy');
+const teddyHint = document.getElementById('teddyHint');
 const rose = document.getElementById('rose');
 
 let heartInterval = null;
 
-/* ========== GENERAL HELPERS ========== */
-function startMusicIfNeeded() {
-  if (bgMusic && bgMusic.paused) {
-    bgMusic.play().catch(() => {}); // User gesture required
+/* ========== MUSIC helper ========== */
+function startMusicIfNeeded(){
+  if (bgMusic && bgMusic.paused){
+    bgMusic.play().catch(()=>{}); // user gesture required on some browsers
     bgMusic.volume = 0.55;
   }
 }
-
-// Autoplay music on first interaction
-document.addEventListener('pointerdown', function firstInteraction() {
+// Autoplay on first interaction
+document.addEventListener('pointerdown', function firstPlay(){
   startMusicIfNeeded();
-  document.removeEventListener('pointerdown', firstInteraction);
+  document.removeEventListener('pointerdown', firstPlay);
 });
 
-function switchScreen(screenKey) {
-  Object.values(screens).forEach(s => s.classList.add('hidden'));
-  if (screens[screenKey]) {
-    screens[screenKey].classList.remove('hidden');
-  }
-}
-
-/* ========== START SCREEN LOGIC ========== */
-const YES_WORDS = ['yes', 'ha', 'haan', 'han', 'hn', 'hnn', 'haaa', 'y', 'yesh', 'yeah', 'ya'];
-let resistClicks = 0;
-
-function isYes(txt) {
-  return YES_WORDS.includes((txt || '').trim().toLowerCase());
-}
-
-function handleStartSubmit() {
-  startMusicIfNeeded();
-  if (isYes(answer.value)) {
-    switchScreen('name');
-    fullname.focus();
-    startNameHearts();
-  } else {
-    resistClicks++;
-    tease.textContent = ["What?", "Why 😢", "I thought you loved me ;("][(resistClicks - 1) % 3];
-    bigHeart.style.transform = `translate(${(Math.random() - 0.5) * 60}px, ${(Math.random() - 0.5) * 40}px)`;
-    setTimeout(() => bigHeart.style.transform = '', 200);
-    if (resistClicks >= 3) {
-      bigYes.classList.remove('hidden');
-    }
-  }
-}
-
-ansBtn.addEventListener('click', handleStartSubmit);
-bigHeart.addEventListener('click', handleStartSubmit);
-bigYes.addEventListener('click', () => {
-  answer.value = 'Yes';
-  handleStartSubmit();
-});
-answer.addEventListener('keydown', (e) => { if (e.key === 'Enter') ansBtn.click(); });
-
-/* ========== NAME SCREEN LOGIC ========== */
-let nameAttempts = 0;
-
-function normalizeName(s) {
-  return (s || '').trim().replace(/\s+/g, ' ').toLowerCase();
-}
-
-function spawnFloatHeart() {
+/* ========== floating hearts ========== */
+function spawnFloatHeart(){
   const el = document.createElement('div');
   el.className = 'float-heart';
-  el.innerText = ['💖', '💕', '🌸'][Math.floor(Math.random() * 3)];
-  el.style.left = Math.random() * 90 + 'vw';
-  const dur = 4 + Math.random() * 2;
+  el.innerText = ['💖','💕','🌸'][Math.floor(Math.random()*3)];
+  el.style.left = Math.random()*90 + 'vw';
+  const dur = 4 + Math.random()*2;
   el.style.animationDuration = dur + 's';
   document.body.appendChild(el);
-  setTimeout(() => el.remove(), (dur * 1000) + 200);
+  setTimeout(()=> el.remove(), (dur*1000)+200);
 }
-
-function startNameHearts() {
+function startNameHearts(){
   if (heartInterval) return;
   spawnFloatHeart();
   heartInterval = setInterval(spawnFloatHeart, 800);
 }
-
-function stopNameHearts() {
+function stopNameHearts(){
   if (!heartInterval) return;
   clearInterval(heartInterval);
   heartInterval = null;
   document.querySelectorAll('.float-heart').forEach(n => n.remove());
 }
 
-nameBtn.addEventListener('click', () => {
+/* ========== START screen behavior ========== */
+const YES_WORDS = ['yes','ha','haan','han','hn','hnn','haa','y','yesh','yeah','ya'];
+let resistClicks = 0;
+function isYes(txt){ return YES_WORDS.includes((txt||'').trim().toLowerCase()); }
+
+function nudgeHeart(){
+  resistClicks++;
+  document.getElementById('tease').textContent = ["What?","Why 😢","I thought you loved me ;("][(resistClicks-1)%3];
+  if (resistClicks >= 3) bigYes.classList.remove('hidden');
+}
+
+ansBtn.addEventListener('click', ()=>{
+  startMusicIfNeeded();
+  if (isYes(answer.value)) {
+    screens.start.classList.add('hidden');
+    screens.name.classList.remove('hidden');
+    fullname.focus();
+    startNameHearts();
+  } else {
+    nudgeHeart();
+  }
+});
+document.getElementById('bigHeart').addEventListener('click', ()=>{
+  ansBtn.click(); // Simplify logic by just triggering the button click
+});
+bigYes.addEventListener('click', ()=>{
+  answer.value = 'Yes';
+  ansBtn.click();
+});
+
+/* ========== NAME check (robust) ========== */
+let nameAttempts = 0;
+function normalizeName(s){ return (s||'').trim().replace(/\s+/g,' ').toLowerCase(); }
+
+function goQuiz(){
+  screens.start.classList.add('hidden'); // Ensure all previous are hidden
+  screens.name.classList.add('hidden');
+  screens.quiz.classList.remove('hidden');
+  buildQuiz();
+}
+
+nameBtn.addEventListener('click', ()=>{
   const val = normalizeName(fullname.value);
   nameAttempts++;
-  // ✅ CORRECTED: Changed 'shaheen hassan' to 'shaheen numan'
-  if (val === 'shaheen numan') {
+  // ✅ FIX: Corrected name from 'shaheen hassan' to 'shaheen numan'
+  if (val === 'shaheen numan'){
     stopNameHearts();
-    switchScreen('quiz');
-    buildQuiz();
+    goQuiz(); // This function now correctly transitions to the quiz screen
   } else {
     nameError.textContent = "Hmm… that doesn't look right.";
     if (nameAttempts >= 2) {
@@ -242,30 +239,29 @@ nameBtn.addEventListener('click', () => {
     }
   }
 });
-fullname.addEventListener('keydown', (e) => { if (e.key === 'Enter') nameBtn.click(); });
+fullname.addEventListener('keydown', (e)=> { if (e.key === 'Enter') nameBtn.click(); });
 
-/* ========== QUIZ SCREEN LOGIC ========= */
+/* ========== QUIZ setup & logic ========= */
 const POS = [
-  'My smile 💕', 'My kindness ✨', 'My magic with food 🍲', 'My caring heart 💗',
-  'My intelligence 🧠', 'My look 😍', 'My laughter 🎶', 'Your patience 🌹', 'The way Numan loves you 💞'
+  'My smile 💕','My kindness ✨','My magic with food 🍲','My caring heart 💗',
+  'My intelligence 🧠','My look 😍','My laughter 🎶','Your patience 🌹','The way Numan loves you 💞'
 ];
 const NEG = [
-  'Your pets 🐟', 'Being lazy 🛋️', 'Mood swings 🌩️', 'Overthinking 🤯', 'Getting angry 😠', 'Forgetfulness 😅'
+  'Your pets 🐟','Being lazy 🛋️','Mood swings 🌩️','Overthinking 🤯','Getting angry 😠','Forgetfulness 😅'
 ];
 let correctCount = 0;
 
-function buildQuiz() {
+function buildQuiz(){
   correctCount = 0;
   quizOptions.innerHTML = '';
-  const arr = [...POS.map(t => ({ t, g: true })), ...NEG.map(t => ({ t, g: false }))].sort(() => Math.random() - 0.5);
-
-  arr.forEach(o => {
+  const arr = [...POS.map(t=>({t,g:true})), ...NEG.map(t=>({t,g:false}))].sort(()=>Math.random()-0.5);
+  arr.forEach(o=>{
     const d = document.createElement('div');
     d.className = 'option';
     d.textContent = o.t;
-    d.addEventListener('click', () => {
-      if (o.g) {
-        if (!d.dataset.selected) {
+    d.addEventListener('click', ()=>{
+      if (o.g){
+        if (!d.dataset.selected){
           d.dataset.selected = '1';
           d.style.background = 'rgba(46,204,113,0.2)';
           correctCount++;
@@ -275,56 +271,72 @@ function buildQuiz() {
           correctCount--;
         }
         if (correctCount >= 5) {
-          setTimeout(() => {
-            switchScreen('choice');
-            buildChoice();
-          }, 400);
+            setTimeout(() => unlockTeddy(), 400); // Add a small delay
         }
       } else {
-        d.textContent = (Math.random() > 0.5 ? 'Nope ❌' : 'Whoops 😜');
+        d.textContent = (Math.random()>0.5 ? 'Nope ❌' : 'Whoops 😜');
         d.style.opacity = '0.4';
         d.style.pointerEvents = 'none';
-        setTimeout(() => d.style.display = 'none', 300);
+        setTimeout(()=> d.remove(), 400);
       }
     });
     quizOptions.appendChild(d);
   });
 }
 
-/* ========== CHOICE SCREEN LOGIC ========== */
-function buildChoice() {
+/* ========== Teddy unlock / display ========== */
+function unlockTeddy(){
+  screens.quiz.classList.add('hidden');
+  screens.teddy.classList.remove('hidden');
+  teddyHint.style.display = 'block';
+  const moveTeddy = ()=>{
+    const x = (Math.random()-0.5) * 120; const y = (Math.random()-0.5) * 40;
+    teddy.style.transform = `translateX(-50%) translate(${x}px, ${y}px)`;
+    setTimeout(()=> teddy.style.transform = 'translateX(-50%)', 300);
+  };
+  teddy.addEventListener('pointerdown', moveTeddy, {passive:true});
+  teddy.addEventListener('click', onTeddyClick);
+}
+
+function onTeddyClick(){
+  teddy.removeEventListener('click', onTeddyClick);
+  teddyHint.style.display = 'none';
+  screens.teddy.classList.add('hidden');
+  screens.choice.classList.remove('hidden');
+  buildChoice();
+}
+
+/* ========== Choice grid ========== */
+function buildChoice(){
   grid6.innerHTML = '';
   const tiles = [
-    { src: 'bva.png', label: 'My Love', good: true },
-    { src: 'duck.png', label: 'A Duck', good: false },
-    { src: 'gulzar.png', label: 'Gulzar', good: false },
-    { src: 'gabbar.png', label: 'Basanti', good: false },
-    { src: 'anjana.png', label: 'An Actress', good: false },
-    { src: 'random.png', label: 'Random', good: false }
-  ].sort(() => Math.random() - 0.5);
+    {src:'bva.png', label:'My love', good:true},
+    {src:'duck.png', label:'A Duck', good:false},
+    {src:'gulzar.png', label:'Gulzar', good:false},
+    {src:'gabbar.png', label:'Basanti', good:false},
+    {src:'anjana.png', label:'An Actress', good:false},
+    {src:'random.png', label:'Random', good:false}
+  ].sort(()=>Math.random()-0.5);
 
-  tiles.forEach(t => {
+  tiles.forEach(t=>{
     const tile = document.createElement('div');
     tile.className = 'tile';
     const img = document.createElement('img');
     img.src = t.src;
     img.alt = t.label;
     tile.appendChild(img);
-    const lab = document.createElement('div');
-    lab.className = 'label';
-    lab.textContent = t.label;
+    const lab = document.createElement('div'); lab.className='label'; lab.textContent = t.label;
     tile.appendChild(lab);
 
-    tile.addEventListener('click', () => {
-      if (t.good) {
-        burst(['💖', '✨', '🌸'], 24, 1400);
-        setTimeout(() => {
-          switchScreen('final');
+    tile.addEventListener('click', ()=>{
+      if (t.good){
+        burst(['💖','✨','🌸'], 24, 1400);
+        setTimeout(()=> {
+          screens.choice.classList.add('hidden');
           showFinal();
         }, 600);
       } else {
-        tile.classList.remove('shake');
-        void tile.offsetWidth;
+        tile.classList.remove('shake'); void tile.offsetWidth;
         tile.classList.add('shake');
       }
     });
@@ -332,65 +344,57 @@ function buildChoice() {
   });
 }
 
-function burst(chars = ['💖', '🌸'], n = 18, dur = 1600) {
-  for (let i = 0; i < n; i++) {
+/* small burst helper (used on correct pick) */
+function burst(chars=['💖','🌸'], n=18, dur=1600){
+  for(let i=0;i<n;i++){
     const e = document.createElement('div');
     e.className = 'float-emoji';
-    e.textContent = chars[Math.floor(Math.random() * chars.length)];
-    e.style.left = (10 + Math.random() * 80) + 'vw';
-    e.style.top = (60 + Math.random() * 30) + 'vh';
-    e.style.fontSize = (14 + Math.random() * 26) + 'px';
+    e.textContent = chars[Math.floor(Math.random()*chars.length)];
+    e.style.left = (10 + Math.random()*80) + 'vw';
+    e.style.top  = (60 + Math.random()*30) + 'vh';
+    e.style.fontSize = (14 + Math.random()*26) + 'px';
     document.body.appendChild(e);
-    e.animate([{ transform: 'translateY(0) scale(1)', opacity: 1 }, { transform: 'translateY(-160px) scale(1.2)', opacity: 0 }], { duration: dur, easing: 'ease-out' });
-    setTimeout(() => e.remove(), dur + 80);
+    e.animate([{transform:'translateY(0) scale(1)',opacity:1},{transform:'translateY(-160px) scale(1.2)',opacity:0}],{duration:dur,easing:'ease-out'});
+    setTimeout(()=> e.remove(), dur+80);
   }
 }
 
-/* ========== FINAL SCREEN LOGIC ========== */
-function showFinal() {
-  // Update background image for the final screen
+/* ========== Final screen ========== */
+function showFinal(){
+  screens.final.classList.remove('hidden');
   document.querySelector('#finalScreen .bg').src = 'bva.jpg';
   finalType.textContent = '';
   rose.style.display = 'none';
-
-  // Animate teddy
-  teddy.style.bottom = '-30vh'; // Start off-screen
-  setTimeout(() => {
-    teddy.style.transition = 'bottom 1s ease-out';
-    teddy.style.bottom = '8vh'; // Slide in
-  }, 200);
-
-  // Show typewriter text after teddy appears
-  setTimeout(() => {
-    // ✅ CORRECTED: Changed final message to match request
-    typeWriter("Always yours & I Love You Forever 💖 – Numan", 80, () => {
-      // Callback after typing finishes
-      teddy.style.transition = 'transform 0.5s ease-in-out';
-      teddy.style.transform = 'translateX(-50%) rotate(-15deg)'; // React
-      setTimeout(() => {
-        rose.style.display = 'block'; // Offer rose
-        burst(['💖', '🌸', '✨'], 30, 2500);
-      }, 500);
-    });
-  }, 1200);
+  
+  // ✅ FIX: Corrected final message text
+  typeWriter("Always yours & I Love You Forever 💖 – Numan", 80, () => {
+    // This is a callback function that runs after typing is complete
+    setTimeout(() => {
+        rose.style.display = 'block';
+        burst(['💖','🌸','✨'], 30, 2500);
+    }, 500);
+  });
 }
 
-function typeWriter(text, speed = 80, callback) {
+/* typewriter */
+function typeWriter(text, speed=80, onComplete){
   finalType.textContent = '';
   let i = 0;
-  const t = setInterval(() => {
+  const t = setInterval(()=>{
     if (i < text.length) {
-      finalType.textContent += text.charAt(i);
-      i++;
+        finalType.textContent += text.charAt(i);
+        i++;
     } else {
-      clearInterval(t);
-      if (callback) callback();
+        clearInterval(t);
+        if (onComplete) onComplete();
     }
   }, speed);
 }
 
-console.log('App ready for my Jaan ❤️');
+/* ===== small helpers & key bindings ===== */
+answer.addEventListener('keydown', (e)=>{ if (e.key === 'Enter') ansBtn.click(); });
 
+console.log('App ready for my Jaan ❤️');
 </script>
 </body>
 </html>
