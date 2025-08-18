@@ -1,172 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> For Cutie patootie ❤️</title>
-    <style>
-        :root {
-            --pink: #ff5fa8;
-            --deep: #ff2f86;
-            --bg: #050507;
-            --glow: 0 0 80px rgba(255, 95, 168, 0.75);
-            --font: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { height: 100%; width: 100%; font-family: var(--font); background: var(--bg); color: #fff; overflow: hidden; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title> For Cutie patootie ❤️</title>
+<style>
+    :root {
+        --pink: #ff5fa8;
+        --deep: #ff2f86;
+        --bg: #050507;
+        --glow: 0 0 80px rgba(255, 95, 168, 0.75);
+        --font: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; width: 100%; font-family: var(--font); background: var(--bg); color: #fff; overflow: hidden; }
 
-        /* --- Screen & Layout --- */
-        .screen {
-            position: fixed;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s, visibility 0.5s;
-        }
-        .screen.visible { opacity: 1; visibility: visible; z-index: 10; }
-        .background { position: fixed; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: brightness(0.6); }
-        .center-card { background: rgba(0,0,0,0.45); padding: 25px; border-radius: 20px; z-index: 2; }
-        .title { font-size: 28px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .subtitle { color: #ffdbe9; }
+    /* --- Screen & Layout --- */
+    .screen {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s, visibility 0.5s;
+    }
+    .screen.visible { opacity: 1; visibility: visible; z-index: 10; }
+    .background { position: fixed; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: brightness(0.6); }
+    .center-card { background: rgba(0,0,0,0.45); padding: 25px; border-radius: 20px; z-index: 2; }
+    .title { font-size: 28px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+    .subtitle { color: #ffdbe9; }
 
-        /* --- UI Elements --- */
-        .input-field { display: flex; gap: 10px; margin-top: 20px; }
-        input[type="text"] {
-            padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.3);
-            background: rgba(0,0,0,0.4); color: #fff; font-size: 16px;
-        }
-        .btn {
-            padding: 12px 20px; border-radius: 12px; border: none; cursor: pointer;
-            font-weight: bold; font-size: 16px; background: var(--pink); color: #1a000a;
-        }
-        .error-msg { min-height: 20px; margin-top: 8px; color: #ff8a80; }
+    /* --- UI Elements --- */
+    .input-field { display: flex; gap: 10px; margin-top: 20px; }
+    input[type="text"] {
+        padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.3);
+        background: rgba(0,0,0,0.4); color: #fff; font-size: 16px;
+    }
+    .btn {
+        padding: 12px 20px; border-radius: 12px; border: none; cursor: pointer;
+        font-weight: bold; font-size: 16px; background: var(--pink); color: #1a000a;
+    }
+    .error-msg { min-height: 20px; margin-top: 8px; color: #ff8a80; }
 
-        /* --- Start Screen --- */
-        .heart {
-            font-size: 100px; text-shadow: var(--glow); user-select: none; cursor: pointer;
-            transition: transform 0.3s ease; animation: beat 1.3s ease-in-out infinite;
-        }
-        @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
-        #giantYesBtn {
-            position: fixed; inset: 0; margin: auto; width: 90vw; height: 30vh; max-width: 500px;
-            max-height: 200px; background: linear-gradient(180deg, var(--pink), var(--deep));
-            color: #1a000a; font-size: clamp(40px, 10vw, 80px); font-weight: 900;
-            border-radius: 30px; box-shadow: var(--glow); border: none; cursor: pointer;
-            z-index: 20; opacity: 0; visibility: hidden; transform: scale(0.5);
-            transition: all 0.4s ease; animation: bob 1.5s ease-in-out infinite;
-        }
-        #giantYesBtn.visible { opacity: 1; visibility: visible; transform: scale(1); }
-        @keyframes bob { 0%, 100% { transform: scale(1) translateY(0); } 50% { transform: scale(1.05) translateY(-10px); } }
+    /* --- Start Screen --- */
+    .heart {
+        font-size: 100px; text-shadow: var(--glow); user-select: none; cursor: pointer;
+        transition: transform 0.3s ease; animation: beat 1.3s ease-in-out infinite;
+    }
+    @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+    #giantYesBtn {
+        position: fixed; inset: 0; margin: auto; width: 90vw; height: 30vh; max-width: 500px;
+        max-height: 200px; background: linear-gradient(180deg, var(--pink), var(--deep));
+        color: #1a000a; font-size: clamp(40px, 10vw, 80px); font-weight: 900;
+        border-radius: 30px; box-shadow: var(--glow); border: none; cursor: pointer;
+        z-index: 20; opacity: 0; visibility: hidden; transform: scale(0.5);
+        transition: all 0.4s ease; animation: bob 1.5s ease-in-out infinite;
+    }
+    #giantYesBtn.visible { opacity: 1; visibility: visible; transform: scale(1); }
+    @keyframes bob { 0%, 100% { transform: scale(1) translateY(0); } 50% { transform: scale(1.05) translateY(-10px); } }
 
-        /* --- Quiz Screen --- */
-        .options-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 800px; margin-top: 20px; }
-        .option {
-            padding: 10px 15px; border-radius: 10px; background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15); cursor: pointer; transition: all 0.2s;
-        }
-        .option.selected { background: #2ecc71; border-color: #2ecc71; color: #fff; transform: scale(1.05); }
-        .option.fading { opacity: 0; transform: scale(0.8); }
+    /* --- Quiz Screen --- */
+    .options-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 800px; margin-top: 20px; }
+    .option {
+        padding: 10px 15px; border-radius: 10px; background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15); cursor: pointer; transition: all 0.2s;
+    }
+    .option.selected { background: #2ecc71; border-color: #2ecc71; color: #fff; transform: scale(1.05); }
+    .option.fading { opacity: 0; transform: scale(0.8); }
 
-        /* --- Choice Screen --- */
-        #choiceScreen.visible {
-            background: radial-gradient(circle, rgba(255,105,180,0.3) 0%, rgba(0,0,0,0) 70%), #050507;
-        }
-        .choice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; max-width: 900px; margin-top: 20px; }
-        .tile {
-            border-radius: 15px; overflow: hidden; border: 2px solid transparent;
-            cursor: pointer; position: relative; transition: transform 0.2s;
-            background: rgba(255,255,255,0.05);
-        }
-        .tile:hover { transform: scale(1.03); }
-        .tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .tile.shake { animation: shake 0.4s; }
-        @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
+    /* --- Choice Screen --- */
+    #choiceScreen.visible {
+        background: radial-gradient(circle, rgba(255,105,180,0.3) 0%, rgba(0,0,0,0) 70%), #050507;
+    }
+    .choice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; max-width: 900px; margin-top: 20px; }
+    .tile {
+        border-radius: 15px; overflow: hidden; border: 2px solid transparent;
+        cursor: pointer; position: relative; transition: transform 0.2s;
+        background: rgba(255,255,255,0.05);
+    }
+    .tile:hover { transform: scale(1.03); }
+    .tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .tile.shake { animation: shake 0.4s; }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
 
-        /* --- Final Screen (FIXED) --- */
-.final-container {
-    position: relative; /* Establishes a positioning context for absolute children */
-    width: 100%;
-    height: 100%;
-}
+    /* --- Final Screen (FIXED) --- */
+    .final-container {
+        position: relative; /* Establishes a positioning context for absolute children */
+        width: 100%;
+        height: 100%;
+    }
 
-#finalMessage {
-    /* Position the text block absolutely at the top */
-    position: absolute;
-    top: 5vh;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 12; /* <-- THIS IS THE KEY FIX: Brings text on top of the rose */
-    
-    width: 90%;
-    max-width: 800px; 
-    max-height: 60vh; 
-    
-    padding: 0 10px; 
+    #finalMessage {
+        /* Position the text block absolutely at the top */
+        position: absolute;
+        top: 5vh;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 12; /* <-- THIS IS THE KEY FIX: Brings text on top of the rose */
+        width: 90%;
+        max-width: 800px; 
+        max-height: 60vh; 
+        padding: 0 10px; 
+        font-size: clamp(16px, 4vw, 24px);
+        font-weight: bold;
+        opacity: 0;
+        white-space: pre-wrap; 
+        text-align: center;
+        line-height: 1.5;
+        overflow-y: auto;
+        background: linear-gradient(45deg, #ff81c0, #e68aff, #84e1ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 0 15px rgba(255, 129, 192, 0.5), 0 0 30px rgba(230, 138, 255, 0.4);
+        transition: opacity 1s ease;
+    }
 
-    font-size: clamp(16px, 4vw, 24px);
-    font-weight: bold;
-    opacity: 0;
-    white-space: pre-wrap; 
-    text-align: center;
-    line-height: 1.5;
-    
-    /* Make the content scrollable when it overflows */
-    overflow-y: auto;
-    
-    background: linear-gradient(45deg, #ff81c0, #e68aff, #84e1ff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 0 15px rgba(255, 129, 192, 0.5), 0 0 30px rgba(230, 138, 255, 0.4);
-    transition: opacity 1s ease;
-}
+    #teddy {
+        position: absolute;
+        bottom: 5vh;
+        left: 50%;
+        width: clamp(200px, 40vw, 300px);
+        transform: translateX(-50%);
+        cursor: pointer;
+        transition: transform 0.3s ease, opacity 0.5s ease;
+        z-index: 10;
+    }
 
-#teddy {
-    position: absolute;
-    bottom: 5vh;
-    left: 50%;
-    width: clamp(200px, 40vw, 300px);
-    transform: translateX(-50%);
-    cursor: pointer;
-    transition: transform 0.3s ease, opacity 0.5s ease;
-    z-index: 10;
-}
+    #teddy:hover { 
+        transform: translateX(-50%) scale(1.05); 
+    }
 
-#teddy:hover { 
-    transform: translateX(-50%) scale(1.05); 
-}
-
-#rose {
-    position: absolute;
-    bottom: 25vh;
-    left: 50%;
-    width: clamp(80px, 15vw, 120px);
-    transform: translate(-50%, 20px);
-    opacity: 0;
-    transition: opacity 0.5s, transform 0.5s;
-    pointer-events: none;
-    z-index: 11;
-}
-        
-    </style>
+    #rose {
+        position: absolute;
+        bottom: 25vh;
+        left: 50%;
+        width: clamp(80px, 15vw, 120px);
+        transform: translate(-50%, 20px);
+        opacity: 0;
+        transition: opacity 0.5s, transform 0.5s;
+        pointer-events: none;
+        z-index: 11;
+    }
+</style>
 </head>
 <body>
 
     <audio id="bgMusic" src="ava_ja.mp3" loop></audio>
 
     <section id="startScreen" class="screen">
-        <img src="ava.jpg" alt="Background" class="background">
+        <img src="ava.jpg" alt="Background" class="background" />
         <div class="center-card">
             <h1 class="title">Jaan ho aap meri?</h1>
             <div id="heart" class="heart">❤️</div>
             <div class="input-field">
-                <input type="text" id="startInput" placeholder="socho socho..">
+                <input type="text" id="startInput" placeholder="socho socho.." />
                 <button id="startBtn" class="btn">Submit</button>
             </div>
             <p id="playfulMessage" class="subtitle" style="min-height: 24px; margin-top: 15px;"></p>
@@ -175,12 +168,12 @@
     </section>
     
     <section id="nameScreen" class="screen">
-        <img src="ava.jpg" alt="Background" class="background">
+        <img src="ava.jpg" alt="Background" class="background" />
         <div class="center-card">
             <h2 class="title">A quick security check...</h2>
             <p class="subtitle">What's your name Lovebug?</p>
             <div class="input-field">
-                <input type="text" id="nameInput" placeholder="Your full name">
+                <input type="text" id="nameInput" placeholder="Your full name" />
                 <button id="nameBtn" class="btn">Confirm</button>
             </div>
             <p id="nameHint" class="subtitle" style="min-height: 20px; margin-top: 10px;"></p>
@@ -190,7 +183,7 @@
 
     <section id="quizScreen" class="screen">
         <div class="background pink-overlay"></div>
-        <img src="ava.jpg" alt="Background" class="background">
+        <img src="ava.jpg" alt="Background" class="background" />
         <h2 class="title">Why iam getting marry with you cutie?</h2>
         <div id="optionsContainer" class="options-grid"></div>
     </section>
@@ -201,11 +194,11 @@
     </section>
 
     <section id="finalScreen" class="screen">
-        <img src="bva.jpg" alt="Background" class="background">
+        <img src="bva.jpg" alt="Background" class="background" />
         <div class="final-container">
             <p id="finalMessage"></p>
-            <img id="teddy" src="teddy.png" alt="Teddy Bear">
-            <img id="rose" src="rose.png" alt="Rose">
+            <img id="teddy" src="teddy.png" alt="Teddy Bear" />
+            <img id="rose" src="rose.png" alt="Rose" />
         </div>
     </section>
 
@@ -278,7 +271,6 @@
     nameBtn.addEventListener('click', () => {
         const fullName = nameInput.value.trim().toLowerCase();
         nameError.textContent = '';
-        
         if (fullName === 'shaheen hassan') {
             showScreen(quizScreen);
             buildQuiz();
@@ -303,7 +295,6 @@
             ...POSITIVES.map(text => ({ text, isPositive: true })),
             ...NEGATIVES.map(text => ({ text, isPositive: false }))
         ].sort(() => Math.random() - 0.5);
-
         allOptions.forEach(opt => {
             const optionEl = document.createElement('div');
             optionEl.className = 'option';
@@ -341,14 +332,12 @@
             { src: 'anjana.png', isCorrect: false },
             { src: 'random.png', isCorrect: false }
         ].sort(() => Math.random() - 0.5);
-
         choices.forEach(choice => {
             const tileEl = document.createElement('div');
             tileEl.className = 'tile';
             const imgEl = document.createElement('img');
             imgEl.src = choice.src;
             tileEl.appendChild(imgEl);
-
             tileEl.addEventListener('click', () => {
                 if (choice.isCorrect) {
                     showScreen(finalScreen);
@@ -361,7 +350,7 @@
         });
     };
 
-    // --- FLOW 5: FINAL SCREEN ---
+    // --- TYPEWRITER FUNCTION ---
     const typeWriter = (text) => {
         return new Promise(resolve => {
             let i = 0;
@@ -378,38 +367,30 @@
             }, 80);
         });
     };
-    
+
+    // --- FINAL MESSAGE AND ROSE HANDLER ---
     teddy.addEventListener('click', async () => {
-        // Step 1: Hide the teddy bear and start typing animation
+        // Hide teddy
         teddy.style.opacity = '0';
         teddy.style.pointerEvents = 'none';
 
-        // Step 2: Start the typewriter animation
-        await typeWriter(`میری جان، محبت میرے لیے صرف ایک لفظ تھی، ایک ایسی چیز جسے میں نے کہانیوں اور نغموں میں ہی سنا تھا۔ لیکن جب میں نے آپ کو دیکھا تو یہ لفظ حقیقت بن گیا۔ اُس لمحے مجھے محسوس ہوا کہ محبت صرف پائی نہیں جاتی بلکہ دیکھی اور جانی جاتی ہے—آپ کی مسکراہٹ میں، آپ کی آواز میں اور آپ کی آنکھوں میں۔
+        // Type message
+        await typeWriter(`...your long message...`); // Replace with your actual message
 
-جب میں پچھلے دنوں کو یاد کرتا ہوں تو یوں لگتا ہے جیسے قسمت ہمیشہ ہمیں قریب لانے میں مصروف تھی۔ وہ پہلا لمحہ جب ہم ملے، وہ پہلی ہنسی، وہ پہلا لمس، اور پھر وہ دن جب آپ نے "ہاں" کہہ کر میری زندگی کو مکمل کر دیا—یہ سب کچھ خواب کی طرح محسوس ہوتا ہے، ایک ایسا خواب جسے میں کبھی ختم نہیں کرنا چاہتا۔
-
-سچ کہوں تو میرے دل میں ڈر بھی ہے۔ ڈر اس لیے کہ میں نے کبھی یہ سب سوچا نہیں تھا، نہ کبھی شادی پر یقین کیا اور نہ ہی کبھی چاہا کہ میں رک جاؤں۔ لیکن آپ کے ساتھ یہ سب کچھ بالکل درست اور خوبصورت لگتا ہے۔ آپ کے ساتھ میں رکنا نہیں چاہتا، بلکہ آگے بڑھنا چاہتا ہوں۔ میں آپ کے ساتھ ایک ایسا سفر چاہتا ہوں جس میں خواب بھی ہوں اور ہنسی بھی، مشکلیں بھی ہوں اور بے پناہ محبت بھی۔
-
-مجھے معلوم ہے کہ ہر دن آسان نہیں ہوگا۔ کچھ دن مشکل ہوں گے، کچھ لمحے الجھاؤ والے ہوں گے۔ لیکن میرا یقین ہے کہ آپ کے ساتھ ہر مشکل آسان ہو جائے گی۔ میں صرف اچھے دن نہیں چاہتا، میں ہر دن چاہتا ہوں—بس آپ کے ساتھ۔
-
-آپ میری محبت ہی نہیں بلکہ میری بہترین دوست، میرا سہارا اور میری سب سے بڑی دعا ہیں۔ میں چاہتا ہوں کہ آپ میرا اصل چہرہ جانیں، میری کمزوریاں، میرے خواب اور میری کہانیاں۔ اور میں بھی آپ کے ہر رنگ کو جاننا چاہتا ہوں۔ کیونکہ ساتھ مل کر ہم ایک ایسی کہانی لکھ سکتے ہیں جو ہمیشہ کے لیے یادگار ہو۔
-
-ہاں، میں شاید دنیا کے حساب سے تیار نہ ہوں، لیکن آپ کے لیے ہمیشہ تیار ہوں۔
-
-ہمیشہ آپ کا،
-نومان`);
-
-        // Step 3: Show the rose after the text is fully typed
+        // Show rose temporarily
+        rose.style.transition = 'opacity 0.5s, transform 0.5s';
         rose.style.opacity = '1';
         rose.style.transform = 'translate(-50%, 0)';
-    }, { once: true });
+        
+        // After 2 seconds, move down and hide
+        setTimeout(() => {
+            rose.style.opacity = '0';
+            rose.style.transform = 'translate(-50%, 50px)';
+        }, 2000);
+    });
 
     // --- INITIALIZE ---
     showScreen(startScreen);
 </script>
 </body>
 </html>
-
-
-
